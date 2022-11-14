@@ -1,5 +1,5 @@
-extern crate clap;
 use clap::{crate_authors, crate_version, ArgAction, Parser};
+use local_ip_address;
 
 /*
 Originally from: https://github.com/jakewilliami/scripts/blob/master/bash/local-net
@@ -37,8 +37,6 @@ struct Cli {
     #[arg(
         short = 'l',
         long = "local",
-        short_alias = 'p',
-        alias = "private",
         action = ArgAction::SetTrue,
         num_args = 0,
     )]
@@ -50,7 +48,8 @@ fn main() {
 
     if let Some(show_local_ip) = cli.local_ip {
         if show_local_ip {
-            todo!();
+            let local_ip = local_ip_address::local_ip();
+            println!("{local_ip}");
         }
     }
 }
