@@ -44,11 +44,11 @@ struct Cli {
     local_ip: Option<bool>,
 
     #[arg(
-		short = 'p',
-		long = "public",
-		action = ArgAction::SetTrue,
-		num_args = 0,
-	)]
+        short = 'p',
+        long = "public",
+        action = ArgAction::SetTrue,
+        num_args = 0,
+    )]
     public_ip: Option<bool>,
 }
 
@@ -58,23 +58,23 @@ fn main() {
     if let Some(show_local_ip) = cli.local_ip {
         if show_local_ip {
             // let local_ip = local_ip_address::local_ip();
-			let local_ip = "nothing - waiting for https://github.com/EstebanBorai/local-ip-address/pull/85";
+            let local_ip = "nothing - waiting for https://github.com/EstebanBorai/local-ip-address/pull/85";
             println!("{local_ip}");
         }
     }
 
     if let Some(show_public_ip) = cli.public_ip {
         if show_public_ip {
-			display_public_ip();
+            display_public_ip();
         }
     }
 }
 
 #[tokio::main]
 async fn display_public_ip() {
-	if let Some(pub_ip) = public_ip::addr().await {
-		println!("{:?}", pub_ip);
-	} else {
-		println!("Unable to get public IP");
-	}
+    if let Some(pub_ip) = public_ip::addr().await {
+        println!("{:?}", pub_ip);
+    } else {
+        println!("Unable to get public IP");
+    }
 }
