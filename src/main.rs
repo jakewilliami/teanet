@@ -1,6 +1,4 @@
 use clap::{crate_authors, crate_version, ArgAction, Parser};
-// use local_ip_address;
-use public_ip;
 
 /*
 Originally from: https://github.com/jakewilliami/scripts/blob/master/bash/local-net
@@ -34,7 +32,7 @@ The present script will ping local machines using different tools (see options).
     about = "A command line tool for querying information about your home network",
 )]
 struct Cli {
-    /// Display
+    /// Display local IP address of host
     #[arg(
         short = 'l',
         long = "local",
@@ -43,6 +41,7 @@ struct Cli {
     )]
     local_ip: Option<bool>,
 
+    /// Display public IP address of host
     #[arg(
         short = 'p',
         long = "public",
@@ -57,9 +56,7 @@ fn main() {
 
     if let Some(show_local_ip) = cli.local_ip {
         if show_local_ip {
-            // let local_ip = local_ip_address::local_ip();
-            let local_ip = "nothing - waiting for https://github.com/EstebanBorai/local-ip-address/pull/85";
-            println!("{local_ip}");
+            display_local_ip();
         }
     }
 
@@ -70,10 +67,19 @@ fn main() {
     }
 }
 
+fn display_local_ip() {
+    if let Ok(local_ip) = local_ip_address::local_ip() {
+    println!("{local_ip}");
+    } else {
+        println!("Unable to get local IP");
+    }
+}
+
 #[tokio::main]
 async fn display_public_ip() {
     if let Some(pub_ip) = public_ip::addr().await {
-        println!("{:?}", pub_ip);
+        let pub_ip_str = pub_ip.to_string();
+        println!("{pub_ip_str}");
     } else {
         println!("Unable to get public IP");
     }

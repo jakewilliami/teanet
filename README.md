@@ -1,4 +1,4 @@
-<h1 align="center">TeaNet</h1>
+<h1 align="center">teanet</h1>
 
 ## Description
 
@@ -18,14 +18,14 @@ $ ./teanet -h
 ## Usage
 
 ```
-$ ./teanet --help
+$ ./teanet -h
 A command line tool for querying information about your home network
 
 Usage: teanet [OPTIONS]
 
 Options:
-  -l, --local    Display
-  -p, --public
+  -l, --local    Display local IP address of host
+  -p, --public   Display public IP address of host
   -h, --help     Print help information
   -V, --version  Print version information
 ```
