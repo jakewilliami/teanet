@@ -29,8 +29,8 @@ The present script will ping local machines using different tools (see options).
     name = "teanet",
     author = crate_authors!("\n"),
     version = crate_version!(),
-    about = "A command line tool for querying information about your home network",
 )]
+/// A command line tool for querying information about your home network
 struct Cli {
     /// Display local IP address of host
     #[arg(
