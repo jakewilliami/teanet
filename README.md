@@ -10,7 +10,7 @@ This tool is ported from an [old bash script](https://github.com/jakewilliami/sc
 
 ## Quick Start
 
-```commandline
+```console
 $ ./compile.sh
 $ ./teanet -h
 ```
